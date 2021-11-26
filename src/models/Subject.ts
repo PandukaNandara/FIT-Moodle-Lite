@@ -3,5 +3,4 @@ export default interface Subject {
     name: string;
     code: string;
     lecturer: string;
-
 }
