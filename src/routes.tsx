@@ -23,7 +23,7 @@ const routes: AppRoute[] = [
     subRoutes: [
       {
         component: <AllSubjectScreen />,
-        path: "subjects",
+        path: "",
       },
       {
         component: <OneSubjectScreen />,
