@@ -1,25 +1,26 @@
-import React from 'react';
-import './App.css';
-import SubjectCard from './components/SubjectCard';
+import React from "react";
+import "./App.css";
+import { Route, Routes, BrowserRouter, Outlet } from 'react-router-dom';
+import routes, { AppRoute } from "./routes";
 
 function App() {
+  const generateRoute = (appRoute: AppRoute, index: number) => {
+    const Component = appRoute.component ?? <Outlet />;
+    return (
+      <Route key={index} path={appRoute.path} element={Component}>
+        {(appRoute.subRoutes ?? []).map((route, i) => generateRoute(route, i))};
+      </Route>
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <SubjectCard />
-      </header>
-    </div>
+    <main>
+      {/* <TitleBar currentWindow={getCurrentWindow()}> */}
+      <BrowserRouter>
+        <Routes>{routes.map(generateRoute)}</Routes>
+      </BrowserRouter>
+      {/* </TitleBar> */}
+    </main>
   );
 }
 
