@@ -29,6 +29,7 @@ const LoginScreen = () => {
 
     try {
       await authService.login(username, password);
+      navigate("/");
     } catch (e) {
       const error = e as Error;
       alert(error.message);
