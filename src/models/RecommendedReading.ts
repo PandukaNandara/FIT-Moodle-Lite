@@ -1,5 +1,5 @@
 export default interface RecommendedReading {
-    id: string;
+    id?: string;
     description: string;
     url: string;
     date: string;

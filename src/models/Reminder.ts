@@ -1,5 +1,5 @@
 export default interface Reminder {
-    id: string;
+    id?: string;
     description: string;
     url: string;
     date: Date;

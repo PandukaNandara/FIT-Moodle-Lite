@@ -1,21 +1,37 @@
-import React, { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { AppBar, Avatar, Toolbar, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { Outlet } from "react-router";
+import { useUserContext, withUserContext } from "../../context/UserContext";
+import IconButton from "@mui/material/IconButton";
 
 const MainLayout = () => {
-    const navigate = useNavigate();
-    useEffect(() => {
-        const isAuthenticated = false;
-        if(!isAuthenticated) {
-            navigate("/login", { replace: true });
-        }
-    }, []);
-
+  const currentUser = useUserContext();
   return (
-    <div>
-        <div>This is app bar</div>
+    <main>
+      <Box sx={{ display: "flex" }}>
+        <AppBar position="fixed">
+          <Toolbar>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              Subjects
+            </Typography>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              <Avatar
+                alt={currentUser.name}
+                src={`https://avatars.dicebear.com/api/initials/${currentUser.name}.svg`}
+              />
+            </IconButton>
+          </Toolbar>
+        </AppBar>
         <Outlet />
-    </div>
+      </Box>
+    </main>
   );
 };
 
-export default MainLayout;
+export default withUserContext(MainLayout);

@@ -1,5 +1,5 @@
 export default interface Subject {
-    id: string;
+    id?: string;
     name: string;
     code: string;
     lecturer: string;
