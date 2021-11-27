@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  signOut
 } from "firebase/auth";
 
 import {
@@ -59,5 +60,9 @@ export default class AuthService implements CrudService<User> {
     const email = `${username}@uom.lk`; // Username is always like 181223a@uom.lk
 
     await signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  async logout() {
+    await signOut(this.auth);
   }
 }

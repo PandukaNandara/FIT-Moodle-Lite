@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { useAppBarContext } from '../../layouts/main/MainLayout';
 
-const AllSubjectScreen = () => {
+const SettingsScreen = () => {
     const appBarContext = useAppBarContext();
 
     useEffect(() => {
-        appBarContext.setTitle('All Subjects');
+        appBarContext.setTitle('Settings');
     }, []);
 
     return (
         <div>
-            Hello
+            
         </div>
     )
 }
 
-export default AllSubjectScreen
+export default SettingsScreen
