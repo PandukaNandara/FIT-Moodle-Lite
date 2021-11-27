@@ -1,5 +1,5 @@
 export default interface StudentNote {
-    id: string;
+    id?: string;
     description: string;
     url: string;
     uploader: string;
