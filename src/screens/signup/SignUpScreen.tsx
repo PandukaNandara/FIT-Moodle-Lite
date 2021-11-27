@@ -86,7 +86,7 @@ const SignUpScreen = () => {
       </div>
       <div className="d-margin">
         <Button variant="contained" onClick={onClickLogin}>
-          LOG IN
+          SIGN UP
         </Button>
       </div>
       <div className="d-margin">

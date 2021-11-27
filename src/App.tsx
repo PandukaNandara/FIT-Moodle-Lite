@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Routes, BrowserRouter, Outlet } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Outlet } from "react-router-dom";
 import routes, { AppRoute } from "./routes";
 
 function App() {
@@ -14,13 +14,9 @@ function App() {
   };
 
   return (
-    <main>
-      {/* <TitleBar currentWindow={getCurrentWindow()}> */}
-      <BrowserRouter>
-        <Routes>{routes.map(generateRoute)}</Routes>
-      </BrowserRouter>
-      {/* </TitleBar> */}
-    </main>
+    <BrowserRouter>
+      <Routes>{routes.map(generateRoute)}</Routes>
+    </BrowserRouter>
   );
 }
 

@@ -18,9 +18,9 @@ const MainLayout = () => {
 
   const [appBarTitle, setAppBarTitle] = useState("");
   return (
-    <main>
+    <>
       <AppBarContext.Provider value={{ setTitle: setAppBarTitle }}>
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
           <AppBar position="fixed">
             <Toolbar>
               <IconButton
@@ -29,7 +29,8 @@ const MainLayout = () => {
                 color="inherit"
                 aria-label="menu"
                 sx={{ mr: 2 }}
-                onClick={(e) => window.location.pathname !== "/" && navigate("/")}
+                disabled={window.location.pathname === "/"}
+                onClick={(e) => navigate("/")}
               >
                 <img
                   src="https://img.icons8.com/nolan/40/moodle.png"
@@ -60,10 +61,13 @@ const MainLayout = () => {
               handleClose={() => setAnchorElement(undefined)}
             />
           </AppBar>
-          <Outlet />
+          <Toolbar />
+          <main className="minus-appbar-height">
+            <Outlet />
+          </main>
         </Box>
       </AppBarContext.Provider>
-    </main>
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import MainLayout from "./layouts/main/MainLayout";
 import LoginScreen from "./screens/login/LoginScreen";
 import LogoutScreen from "./screens/logout/LogoutScreen";
-import SettingsScreen from "./screens/settings/SettingsScreen";
+import AccountSettingsScreen from "./screens/settings/AccountSettingsScreen";
 import SignUpScreen from "./screens/signup/SignUpScreen";
 import AllSubjectScreen from "./screens/subjects/AllSubjectScreen";
 import OneSubjectScreen from "./screens/subjects/one/OneSubjectScreen";
@@ -32,7 +32,7 @@ const routes: AppRoute[] = [
         path: "subjects/:id",
       },
       {
-        component: <SettingsScreen />,
+        component: <AccountSettingsScreen />,
         path: "settings",
       },
     ],

@@ -1,12 +1,15 @@
 import { firebaseApp } from "../config/firebaseConfig";
-import User from "../models/User";
+import UserModel from "../models/User";
 import CrudService from "./CrudService";
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
-  signOut
+  signOut,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
 
 import {
@@ -14,13 +17,14 @@ import {
   CollectionReference,
   DocumentData,
   getFirestore,
-  addDoc,
   setDoc,
   doc,
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
-export default class AuthService implements CrudService<User> {
-  async create({ username, name, password }: User): Promise<void> {
+export default class AuthService implements CrudService<UserModel> {
+  async create({ username, name, password }: UserModel): Promise<void> {
     username = username.toLowerCase().trim();
     const email = `${username}@uom.lk`; // Username is always like 181223a@uom.lk
 
@@ -34,21 +38,37 @@ export default class AuthService implements CrudService<User> {
     setDoc(doc(collection, createdUser.user.uid), {
       username,
       name,
-    } as User);
+    } as UserModel);
   }
 
   private auth = getAuth(firebaseApp);
 
-  update(id: string, data: User): Promise<void> {
+  async update(id: string, data: UserModel): Promise<void> {
+    const collection = this.getCollection();
+    await updateDoc(doc(collection, id), data as any);
+    await updateProfile(this.auth.currentUser!, {
+        displayName: data.name,
+    });
+    await this.auth.currentUser?.reload();
+  }
+
+  async delete(id: string): Promise<void> {
+    const collection = this.getCollection();
+    await deleteDoc(doc(collection, id));
+    await this.auth.currentUser?.delete();
+  }
+
+  stream(callback: (data: UserModel[]) => void): Promise<void> {
     throw new Error("Method not implemented.");
   }
 
-  delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
-  }
-
-  stream(callback: (data: User[]) => void): Promise<void> {
-    throw new Error("Method not implemented.");
+  async changePassword(oldPassword: string, newPassword: string) {
+    const credential = EmailAuthProvider.credential(
+      this.auth.currentUser!.email!,
+      oldPassword
+    );
+    await reauthenticateWithCredential(this.auth.currentUser!, credential);
+    await updatePassword(this.auth.currentUser!, newPassword);
   }
 
   getCollection(): CollectionReference<DocumentData> {
