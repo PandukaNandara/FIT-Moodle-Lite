@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useAppBarContext } from "../../layouts/main/MainLayout";
 
 const AllSubjectScreen = () => {
-    return (
-        <div>
-            Hello
-        </div>
-    )
-}
+  const appBarContext = useAppBarContext();
 
-export default AllSubjectScreen
+  useEffect(() => {
+    appBarContext.setTitle("All Subjects");
+  }, []);
+
+  return (
+    <div className="d-padding">
+      <div>asdasdas</div>
+      <div>asdasdas</div>
+    </div>
+  );
+};
+
+export default AllSubjectScreen;
