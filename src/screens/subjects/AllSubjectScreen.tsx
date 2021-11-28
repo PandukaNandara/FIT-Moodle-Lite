@@ -3,22 +3,23 @@ import SubjectCard from "../../components/SubjectCard";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { CircularProgress } from "@mui/material";
-import db from "../../config/firebaseConfig";
-import { collection, onSnapshot } from "@firebase/firestore";
 import Subject from "../../models/Subject";
 import SubjectCreation from './SubjectCreation';
+import { SubjectService } from "../../services/subServices/SubjectService";
+
+const subjectService =  new SubjectService();
 
 const AllSubjectScreen = () => {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    onSnapshot(collection(db, "subjects"), (snapshot) => {
+    subjectService.stream((data)=> {
       setSubjects(
-        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id } as Subject))
+        data
       );
       setLoading(false);
-    });
+    })
   }, []);
 
   return loading ? (

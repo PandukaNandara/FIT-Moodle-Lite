@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import db from "../../services/subServices/subFirebaseConfig";
+import { SubjectService } from '../../services/subServices/SubjectService';
 
 
 const style_modal = {
@@ -53,10 +54,9 @@ export default function SubjectCreation() {
         };
 
         try {
-            //creating a new subject
-            await db.collection("subjects").doc().set(data);
+            new SubjectService().create(data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         } finally {
             setOpen(false);
             //window.location.reload();
