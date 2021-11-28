@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router";
 
 const OneSubjectScreen = () => {
-    return (
-        <div>
-            This is 0ne subject
-        </div>
-    )
-}
+  const { subjectId } = useParams();
+  return <div>This is 0ne subject {subjectId}</div>;
+};
 
-export default OneSubjectScreen
+export default OneSubjectScreen;
