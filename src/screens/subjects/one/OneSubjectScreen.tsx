@@ -15,6 +15,8 @@ import Subject from "../../../models/Subject";
 import { SubjectService } from "../../../services/subServices/SubjectService";
 import KuppiSection from "./KuppiSection";
 import { useAppBarContext } from "../../../layouts/main/MainLayout";
+import RecommendedReadingSection from "./RecommendedReadingSection";
+
 
 const mdTheme = createTheme();
 const subjectService = new SubjectService();
@@ -65,7 +67,6 @@ const OneSubjectScreen = () => {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 240,
                   }}
                 >
                   <KuppiSection subjectId={subjectId!} />
@@ -78,10 +79,9 @@ const OneSubjectScreen = () => {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 240,
                   }}
                 >
-                  <RecReading />
+                  <RecommendedReadingSection subjectId={subjectId!} /> 
                 </Paper>
               </Grid>
               {/* Notes */}

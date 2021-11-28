@@ -27,7 +27,7 @@ const DetailCard: React.FC<Props> = ({
   onDelete,
 }) => {
   return (
-    <Card>
+    <Card className="d-margin"> 
       <CardContent>
         <Typography variant="body2" color="textSecondary">
           {description}
