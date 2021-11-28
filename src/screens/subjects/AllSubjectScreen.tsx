@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import ReminderCard from "../../components/ReminderCard";
 
 const AllSubjectScreen = () => {
-    return (
-        <div>
-            Hello
-        </div>
-    )
-}
+  return (
+    <div>
+      <div>Hello</div>
 
-export default AllSubjectScreen
+      <ReminderCard />
+    </div>
+  );
+};
+
+export default AllSubjectScreen;
