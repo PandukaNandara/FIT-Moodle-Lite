@@ -1,7 +1,7 @@
 import { IconButton, Typography } from "@mui/material";
 import React, { useEffect, useState, useCallback } from "react";
-import Kuppi from "../../../models/Kuppi";
-import KuppiService from "../../../services/KuppiService";
+import RecommendedReading from "../../../models/RecommendedReading";
+import RecommendedReadingService from "../../../services/RecommendedReadingService";
 import AddIcon from "@mui/icons-material/Add";
 import { Box } from "@mui/system";
 import DetailCard from "../../../components/DetailCard";
@@ -11,22 +11,22 @@ interface Props {
   subjectId: string;
 }
 
-type Entity = Kuppi;
-const entityName = "Kuppi";
+type Entity = RecommendedReading;
+const entityName = "Recommended Reading";
 
-const KuppiSection: React.FC<Props> = ({ subjectId }) => {
-  const kuppiService = useCallback(
-    () => new KuppiService(subjectId),
+const RecommendedReadingSection: React.FC<Props> = ({ subjectId }) => {
+  const recommendedReadingService = useCallback(
+    () => new RecommendedReadingService(subjectId),
     [subjectId]
   );
 
   const [openAdder, setOpenAdder] = useState(false);
   const [updatingItem, setUpdatingItem] = useState<Entity>();
   const [deletingItem, setDeletingItem] = useState<Entity>();
-
+ 
   const add = async (data: Entity) => {
     setOpenAdder(false);
-    await kuppiService().create(data);
+    await recommendedReadingService().create(data);
   };
 
   const [list, setList] = useState<Entity[]>();
@@ -42,36 +42,36 @@ const KuppiSection: React.FC<Props> = ({ subjectId }) => {
   const onEdit = async (data: Entity) => {
     const item = updatingItem;
     setUpdatingItem(undefined);
-    if (item?.id) await kuppiService().update(item.id, data);
+    if (item?.id) await recommendedReadingService().update(item.id, data);
   };
 
   const onDelete = async () => {
     const item = deletingItem;
     setDeletingItem(undefined);
-    if (item?.id) await kuppiService().delete(item.id);
+    if (item?.id) await recommendedReadingService().delete(item.id);
   };
 
   useEffect(() => {
-    kuppiService().stream((data) => setList(data));
-  }, [kuppiService]);
+    recommendedReadingService().stream((data) => setList(data));
+  }, [recommendedReadingService]);
 
   return (
     <>
       <section>
         <Box display="flex">
           <Typography variant="h6" flexGrow={1}>
-            Kuppi
+            {entityName}
           </Typography>
           <IconButton onClick={() => setOpenAdder(true)}>
             <AddIcon />
           </IconButton>
         </Box>
-        {list?.map((kuppi) => (
+        {list?.map((e) => (
           <DetailCard
-            key={kuppi.id}
-            {...kuppi}
-            onEdit={() => onEditClick(kuppi)}
-            onDelete={() => onDeleteClick(kuppi)}
+            key={e.id}
+            {...e}
+            onEdit={() => onEditClick(e)}
+            onDelete={() => onDeleteClick(e)}
           />
         ))}
       </section>
@@ -101,4 +101,4 @@ const KuppiSection: React.FC<Props> = ({ subjectId }) => {
   );
 };
 
-export default KuppiSection;
+export default RecommendedReadingSection;

@@ -13,6 +13,9 @@ import EditSubject from "./EditSubjectDialog";
 import DeleteSubject from "./DeleteSubjectDialog";
 import Subject from "../../../models/Subject";
 import { SubjectService } from "../../../services/subServices/SubjectService";
+import KuppiSection from "./KuppiSection";
+import { useAppBarContext } from "../../../layouts/main/MainLayout";
+import RecommendedReadingSection from "./RecommendedReadingSection";
 
 const mdTheme = createTheme();
 const subjectService = new SubjectService();
@@ -20,10 +23,15 @@ const OneSubjectScreen = () => {
   const { subjectId } = useParams();
   // return <div>This is 0ne subject {subjectId}</div>;
   const [subject, setSubject] = useState<Subject>();
+  const appBarContext = useAppBarContext();
 
   useEffect(() => {
-    if (subjectId) subjectService.getOne(subjectId).then(setSubject);
-  }, [subjectId]);
+    if (subjectId)
+      subjectService.getOne(subjectId).then((e) => {
+        setSubject(e);
+        appBarContext.setTitle(e.name);
+      });
+  }, [appBarContext, subjectId]);
 
   return !subject ? (
     <div />
@@ -58,10 +66,9 @@ const OneSubjectScreen = () => {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 240,
                   }}
                 >
-                  <Kuppi />
+                  <KuppiSection subjectId={subjectId!} />
                 </Paper>
               </Grid>
               {/* Readings */}
@@ -71,10 +78,9 @@ const OneSubjectScreen = () => {
                     p: 2,
                     display: "flex",
                     flexDirection: "column",
-                    height: 240,
                   }}
                 >
-                  <RecReading />
+                  <RecommendedReadingSection subjectId={subjectId!} /> 
                 </Paper>
               </Grid>
               {/* Notes */}
