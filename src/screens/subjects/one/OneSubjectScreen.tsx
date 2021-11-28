@@ -13,6 +13,8 @@ import EditSubject from "./EditSubjectDialog";
 import DeleteSubject from "./DeleteSubjectDialog";
 import Subject from "../../../models/Subject";
 import { SubjectService } from "../../../services/subServices/SubjectService";
+import KuppiSection from "./KuppiSection";
+import { useAppBarContext } from "../../../layouts/main/MainLayout";
 
 const mdTheme = createTheme();
 const subjectService = new SubjectService();
@@ -20,10 +22,15 @@ const OneSubjectScreen = () => {
   const { subjectId } = useParams();
   // return <div>This is 0ne subject {subjectId}</div>;
   const [subject, setSubject] = useState<Subject>();
+  const appBarContext = useAppBarContext();
 
   useEffect(() => {
-    if (subjectId) subjectService.getOne(subjectId).then(setSubject);
-  }, [subjectId]);
+    if (subjectId)
+      subjectService.getOne(subjectId).then((e) => {
+        setSubject(e);
+        appBarContext.setTitle(e.name);
+      });
+  }, [appBarContext, subjectId]);
 
   return !subject ? (
     <div />
@@ -61,7 +68,7 @@ const OneSubjectScreen = () => {
                     height: 240,
                   }}
                 >
-                  <Kuppi />
+                  <KuppiSection subjectId={subjectId!} />
                 </Paper>
               </Grid>
               {/* Readings */}
