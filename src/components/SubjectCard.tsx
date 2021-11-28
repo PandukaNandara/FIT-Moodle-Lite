@@ -1,16 +1,8 @@
-import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Card, CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router";
 import Subject from "../models/Subject";
-
-const Img = styled("img")({
-  margin: "auto",
-  display: "block",
-  maxWidth: "100%",
-  maxHeight: "100%",
-});
 
 interface SubjectCardProps {
   data: Subject;
