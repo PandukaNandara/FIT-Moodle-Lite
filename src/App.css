@@ -14,3 +14,25 @@
 .d-margin {
   margin: 10px;
 }
+
+.d-padding {
+  padding: 10px;
+}
+
+.minus-appbar-height {
+  height: calc(100vh - 65px);
+}
+
+.dy-margin {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.settings-section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.settings-section .item {
+  padding-bottom: 10px;
+}
