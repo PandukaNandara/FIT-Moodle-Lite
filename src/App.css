@@ -21,6 +21,7 @@
 
 .minus-appbar-height {
   height: calc(100vh - 65px);
+  overflow: hidden;
 }
 
 .dy-margin {
