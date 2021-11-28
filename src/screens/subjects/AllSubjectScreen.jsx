@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { CircularProgress } from "@mui/material";
 import db from "../../config/firebaseConfig";
 import { collection, onSnapshot } from "@firebase/firestore";
+import SubjectCreation from './SubjectCreation';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -24,7 +25,6 @@ const AllSubjectScreen = () => {
     useEffect(() => {
         onSnapshot(collection(db, "subjects"), (snapshot) => {
             setSubjects(snapshot.docs.map((doc) => doc.data()));
-            console.log(snapshot.docs.map((doc) => doc.data()));
             setLoading(false);
         });
     }, []);
@@ -34,7 +34,8 @@ const AllSubjectScreen = () => {
         <CircularProgress />
     ) : (
         <div>
-            <Box sx={{ width: '100%', padding: 20 }}>
+            <Box sx={{ width: '100%', padding: 10 }}>
+                <SubjectCreation />
                 <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                     
                     {subjects.map((subject) => (
