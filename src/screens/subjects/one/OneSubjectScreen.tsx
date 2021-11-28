@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router";
+import OneSubjectLanding from "./OneSubjectLanding";
 
 const OneSubjectScreen = () => {
-    return (
-        <div>
-            This is 0ne subject
-        </div>
-    )
-}
+  const { subjectId } = useParams();
+  // return <div>This is 0ne subject {subjectId}</div>;
+  return (
+    <OneSubjectLanding />
+  );
+};
 
-export default OneSubjectScreen
+export default OneSubjectScreen;

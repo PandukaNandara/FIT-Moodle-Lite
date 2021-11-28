@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import db from "../../services/subServices/subFirebaseConfig";
+import db from "../../../services/subServices/subFirebaseConfig";
 
 
 const style_modal = {
@@ -66,8 +66,8 @@ export default function SubjectCreation() {
     return (
         <div>
             <Box sx={{ '& > :not(style)': { m: 1 } }} onClick={handleOpen}>
-                <Fab color="primary" aria-label="add">
-                    <AddIcon />
+                <Fab color="primary" aria-label="edit">
+                    <EditIcon />
                 </Fab>
             </Box>
             <Modal
