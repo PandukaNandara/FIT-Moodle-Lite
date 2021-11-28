@@ -1,6 +1,8 @@
 import React, { ReactNode } from "react";
 import MainLayout from "./layouts/main/MainLayout";
 import LoginScreen from "./screens/login/LoginScreen";
+import LogoutScreen from "./screens/logout/LogoutScreen";
+import AccountSettingsScreen from "./screens/settings/AccountSettingsScreen";
 import SignUpScreen from "./screens/signup/SignUpScreen";
 import AllSubjectScreen from "./screens/subjects/AllSubjectScreen";
 import OneSubjectScreen from "./screens/subjects/one/OneSubjectScreen";
@@ -29,6 +31,10 @@ const routes: AppRoute[] = [
         component: <OneSubjectScreen />,
         path: "subjects/:id",
       },
+      {
+        component: <AccountSettingsScreen />,
+        path: "settings",
+      },
     ],
   },
   {
@@ -38,6 +44,11 @@ const routes: AppRoute[] = [
   {
     component: <SignUpScreen />,
     path: "/signup",
+  },
+
+  {
+    component: <LogoutScreen />,
+    path: "/logout",
   },
 ];
 
