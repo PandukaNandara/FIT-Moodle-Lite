@@ -17,6 +17,7 @@ import KuppiSection from "./KuppiSection";
 import { useAppBarContext } from "../../../layouts/main/MainLayout";
 import RecommendedReadingSection from "./RecommendedReadingSection";
 
+
 const mdTheme = createTheme();
 const subjectService = new SubjectService();
 const OneSubjectScreen = () => {
