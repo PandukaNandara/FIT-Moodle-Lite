@@ -1,6 +1,5 @@
 import React, { useState, FC } from "react";
 import {
-  Box,
   CardContent,
   Typography,
   Card,
@@ -121,7 +120,9 @@ const ReminderCard: FC<ReminderCardProps> = ({ reminder }) => {
                         <Typography variant="h6">
                           Title {reminder.description}
                         </Typography>
-                        <Typography variant="body1">Dead Line {new Date().toUTCString()}</Typography>
+                        <Typography variant="body1">
+                          Dead Line {new Date().toUTCString()}
+                        </Typography>
                       </Card>
                     </Grid>
                   </Grid>

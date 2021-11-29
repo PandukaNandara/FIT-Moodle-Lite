@@ -3,10 +3,7 @@ import Box from "@mui/material/Box";
 import Fab from "@mui/material/Fab";
 import EditIcon from "@mui/icons-material/Edit";
 import Backdrop from "@mui/material/Backdrop";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { collection, updateDoc, doc, getFirestore } from "@firebase/firestore";
 import { useParams } from "react-router";
@@ -17,18 +14,6 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-
-const style_modal = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 interface Props {
   name?: string;
@@ -66,9 +51,7 @@ export default function SubjectCreation({ name, code, lecturer }: Props) {
     };
 
     try {
-        setOpen(false);
-      //creating a new subject
-      // await db.collection("subjects").doc().set(data);
+      setOpen(false);
       await updateDoc(
         doc(collection(getFirestore(firebaseApp), "subjects"), subjectId),
         data
@@ -76,8 +59,6 @@ export default function SubjectCreation({ name, code, lecturer }: Props) {
     } catch (error) {
       console.log(error);
     } finally {
-      
-      //window.location.reload();
     }
   };
 

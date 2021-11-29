@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import AuthService from "../../services/AuthService";
 
@@ -9,7 +9,8 @@ const LogoutScreen = () => {
   useEffect(() => {
     authService.logout().then(() => {
       navigate("/login", { replace: true });
-    }); 
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <div></div>;
