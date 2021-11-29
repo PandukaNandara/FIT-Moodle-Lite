@@ -1,6 +1,6 @@
 import { Button, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import YesNoDialog from "../../components/dialog/YesNoDialog";
 import { useUserContext } from "../../context/UserContext";
@@ -25,6 +25,7 @@ const AccountSettingsScreen = () => {
   useEffect(() => {
     appBarContext.setTitle("Settings");
     setName(currentUser.name);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const updateAccountDetails = async () => {
@@ -39,10 +40,11 @@ const AccountSettingsScreen = () => {
       const passwordErrorLocal = {
         oldPassword: !Boolean(oldPassword) ? "Required" : undefined,
         newPassword: !Boolean(newPassword) ? "Required" : undefined,
-      }
+      };
       setPasswordError(passwordErrorLocal as any);
-      if (passwordErrorLocal.oldPassword || passwordErrorLocal.newPassword) return;
-      
+      if (passwordErrorLocal.oldPassword || passwordErrorLocal.newPassword)
+        return;
+
       await authService.changePassword(oldPassword, newPassword);
       alert("Updated!");
     } catch (e) {

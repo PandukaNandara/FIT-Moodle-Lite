@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { firebaseApp } from "../config/firebaseConfig";
 import User from "../models/User";
@@ -38,10 +38,13 @@ export const withUserContext = (Component: any) => (props: any) => {
       if (!user) {
         navigate("/login", { replace: true });
       } else {
-        setCurrentUser(new UserDetails(user.uid, user.displayName!, user.email!));
+        setCurrentUser(
+          new UserDetails(user.uid, user.displayName!, user.email!)
+        );
       }
       setIsLoading(false);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isLoading ? (
