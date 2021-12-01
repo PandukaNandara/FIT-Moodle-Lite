@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ReminderCard from "../../../components/ReminderCard";
 import AddIcon from "@mui/icons-material/Add";
@@ -30,7 +30,7 @@ const ReminderSection: React.FC<Props> = ({ subjectId }) => {
   };
   useEffect(() => {
     reminderService.stream(getAllReminders);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(allReminders);
   return (
@@ -44,18 +44,14 @@ const ReminderSection: React.FC<Props> = ({ subjectId }) => {
           alignItems="center"
         >
           <Grid item xs={12}>
-            <Typography variant="h6">Reminders</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={createOnClickHandler}
-              fullWidth
-              startIcon={<AddIcon />}
-            >
-              New Reminder
-            </Button>
+            <Box display="flex">
+              <Typography variant="h6" flexGrow={1}>
+                Reminder
+              </Typography>
+              <IconButton onClick={createOnClickHandler}>
+                <AddIcon />
+              </IconButton>
+            </Box>
           </Grid>
         </Grid>
       </Box>
