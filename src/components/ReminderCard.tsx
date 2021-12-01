@@ -118,7 +118,7 @@ const ReminderCard: FC<ReminderCardProps> = ({ reminder }) => {
                     <Grid item xs={12}>
                       <Card className={classes.body}>
                         <Typography variant="h6">
-                          Title {reminder.description}
+                          {reminder.description}
                         </Typography>
                         <Typography variant="body1">
                           Dead Line {new Date().toUTCString()}
